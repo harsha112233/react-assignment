@@ -1,5 +1,6 @@
 const intialState = {
     names: [],
+    name:[]
  
   };
   
@@ -14,8 +15,8 @@ const intialState = {
         let result = state.names.filter(({ id }) => id != +payload.id);
         console.log(result);
         return { ...state, names: [...result, payload.data] };
-      // case "GET_NAME":
-      //   return { ...state, post: payload };
+      case "GET_NAME":
+        return { ...state, name: payload };
       case "DELETE_NAME":
         let resultData = state.names.filter(({ id }) => id != +payload);
         return { ...state, names: resultData };

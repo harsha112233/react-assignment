@@ -1,15 +1,25 @@
 import React,{useState} from 'react'
+import { getNames } from "../redux/Action/index";
+import { useDispatch, useSelector } from "react-redux";
 
 const LeftSide = ({list}) => {
-  const [selectname,setselectname]=useState("")
+  const nameList = useSelector((state) => state?.nameList?.name);
+  
+
   console.log("list",list)
+  const dispatch = useDispatch();
+  const handleChange = (e) => {
+    console.log("dfdf",e.target.value)
+    console.log("nameList",nameList)
+    dispatch(getNames(e.target.value));
+  };
   return (
     <>
     <h5 className='text-primary'>Get data</h5>
-      <select onChange={(e)=>setselectname(e.target.value)}> 
+      <select onChange={handleChange}> 
          <option>List</option>
          {list?.map(({ id, name }) => (
-          <option value={name}>{name}</option>
+          <option value={id}>{name}</option>
         ))}
           
 
@@ -17,14 +27,13 @@ const LeftSide = ({list}) => {
       </select>
       
       
-        <h5 className='text-info'>{selectname}</h5>
+       
       
-      {/* {singlePost?.title && (
-        <ul class="list-group mt-3">
-          <li class="list-group-item">{singlePost?.title}</li>
-          <li class="list-group-item">{singlePost?.author}</li>
-        </ul>
-      )} */}
+      {nameList?.name && (
+         <h5 className='text-info' >{nameList?.name}</h5>
+         
+    
+      )}
     </>
   )
 }
