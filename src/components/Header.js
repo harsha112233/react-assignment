@@ -1,22 +1,23 @@
-import React,{useEffect,useState} from 'react'
+import React, { useEffect, useState } from 'react'
 import { updateNames, getNames } from "../redux/Action/index";
 import { useDispatch, useSelector } from "react-redux";
 
-const Header = ({list}) => {
+const Header = () => {
   const dispatch = useDispatch();
+  const list = useSelector(state => state.nameList.names)
   const updateName = useSelector((state) => state?.nameList?.updateName);
- 
+
   const [postId, setPostId] = useState();
-  
-  const [name,setname]=useState("");
-  useEffect(()=>{
-    if (updateName){
+
+  const [name, setname] = useState("");
+  useEffect(() => {
+    if (updateName) {
       setname(updateName)
     }
-  },[updateName])
+  }, [updateName])
   const handleChange = (e) => {
-      setPostId(e.target.value);
-    dispatch(getNames(e.target.value,'GET_UPDATE_NAME'));
+    setPostId(e.target.value);
+    dispatch(getNames(e.target.value, 'GET_UPDATE_NAME'));
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,29 +25,29 @@ const Header = ({list}) => {
   };
   return (
     <div className='my-4'>
-       <h5 className='text-primary'>Update name</h5>
+      <h5 className='text-primary'>Update name</h5>
       <select className='my-2' onChange={handleChange}
       >
-       <option selected>update name</option>
+        <option selected>update name</option>
         {list?.map(({ id, name }) => (
           <option value={id}>{name}</option>
         ))}
       </select>
       {postId && (
         <form onSubmit={handleSubmit}>
-           <div >
+          <div >
             <span >
               Name :
             </span>
             <input
               type="text"
               value={name.name}
-             onChange={(e) => setname(e.target.value)}
+              onChange={(e) => setname(e.target.value)}
             /> <button type="submit" class="btn btn-primary btn-sm">
-            Update name
-          </button>
+              Update name
+            </button>
           </div>
-         
+
         </form>
       )}
     </div>

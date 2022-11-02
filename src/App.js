@@ -5,42 +5,42 @@ import LeftSide from './components/LeftSide';
 import Main from './components/Main';
 import RightSide from './components/RightSide';
 import { useEffect } from "react";
-import {useSelector,useDispatch} from 'react-redux'
-import {getAllNames} from './redux/Action/index'
+import { useSelector, useDispatch } from 'react-redux'
+import { getAllNames } from './redux/Action/index'
 
 function App() {
   const dispatch = useDispatch()
-  const list=useSelector(state=>state.nameList.names)
+
   useEffect(() => {
-   dispatch(getAllNames())
+    dispatch(getAllNames())
   }, [dispatch]);
- console.log(list)
+
 
   return (
     <div >
       <div className="container">
         <div className="row">
           <div className="col text-center">
-          <Header list={list} />
+            <Header />
           </div>
         </div>
-       <div className="row">
-       <div className="col-4">
-          <LeftSide  list={list}/>
+        <div className="row">
+          <div className="col-4">
+            <LeftSide />
+          </div>
+          <div className="col-4">
+            <Main />
+          </div>
+          <div className="col-4 ">
+            <RightSide />
+          </div>
         </div>
-        <div className="col-4">
-          <Main list={list} />
-        </div>
-        <div className="col-4 ">
-         <RightSide list={list}/>
-        </div>
-       </div>
 
-       <div className="row">
-        <div className="col text-center">
-          <Footer list={list}/>
+        <div className="row">
+          <div className="col text-center">
+            <Footer />
+          </div>
         </div>
-       </div>
       </div>
     </div>
   );

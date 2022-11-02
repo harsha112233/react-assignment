@@ -12,15 +12,15 @@ export const addNames = (body) => async (dispatch) => {
 
 export const updateNames = (id, body) => async (dispatch) => {
   const data = await request("PUT", `http://localhost:3001/list/${id}`, body);
-  dispatch({ type: "UPDATE_NAME", payload: {data:data,id:id} });
+  dispatch({ type: "UPDATE_NAME", payload: { data: data, id: id } });
 };
-export const getNames = (id,type) => async (dispatch) => {
+export const getNames = (id, type) => async (dispatch) => {
   const data = await request("GET", `http://localhost:3001/list/${id}`);
-  dispatch({ type,payload:data});
+  dispatch({ type, payload: data });
 };
 
 export const deleteName = (id) => async (dispatch) => {
-    const data = await request("DELETE", `http://localhost:3001/list/${id}`);
-  
-    dispatch({ type: "DELETE_NAME",payload:id});
-  };
+  const data = await request("DELETE", `http://localhost:3001/list/${id}`);
+
+  dispatch({ type: "DELETE_NAME", payload: id });
+};
