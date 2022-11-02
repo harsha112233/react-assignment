@@ -11,13 +11,13 @@ const LeftSide = ({list}) => {
   const handleChange = (e) => {
     console.log("dfdf",e.target.value)
     console.log("nameList",nameList)
-    dispatch(getNames(e.target.value));
+    dispatch(getNames(e.target.value,'GET_NAME'));
   };
   return (
     <>
     <h5 className='text-primary'>Get data</h5>
       <select onChange={handleChange}> 
-         <option>List</option>
+         <option selected>List</option>
          {list?.map(({ id, name }) => (
           <option value={id}>{name}</option>
         ))}

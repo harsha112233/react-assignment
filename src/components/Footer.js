@@ -11,7 +11,7 @@ const Footer = ({list}) => {
     <div>
        <h5 className='text-primary'>Delete names</h5>
       <select  onChange={handleChange}>
-        <option>delete name</option>
+        <option selected>delete</option>
         {list?.map(({ id, name }) => (
           <option value={id}>{name}</option>
         ))}
